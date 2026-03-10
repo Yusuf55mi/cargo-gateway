@@ -1,0 +1,20 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:ws="http://ws.integration.yurtici.com/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <ws:queryShipment>
+            <request>
+                <userInfo>
+                    <userName>${username}</userName>
+                    <password>${password}</password>
+                    <userLanguage>${userLanguage}</userLanguage>
+                </userInfo>
+                <queryInfo>
+                    <barcode>${trackingNo}</barcode>
+                    <addHistoricalData>true</addHistoricalData>
+                    <onlyTracking>false</onlyTracking>
+                </queryInfo>
+            </request>
+        </ws:queryShipment>
+    </soapenv:Body>
+</soapenv:Envelope>
