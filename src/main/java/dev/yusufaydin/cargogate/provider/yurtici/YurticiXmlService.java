@@ -48,15 +48,25 @@ public class YurticiXmlService {
         }
     }
 
+    // public YurticiCreateResponse parseCreateResponse(String xml) {
+    //     log.debug("Yurtici createShipment yaniti:\n{}", xml);
+    //     Document doc = parseXml(xml);
+    //     YurticiCreateResponse resp = new YurticiCreateResponse();
+    //     resp.setResultCode(getNodeValue(doc, "resultCode"));
+    //     resp.setResultMessage(getNodeValue(doc, "resultMessage"));
+    //     resp.setBarcode(getNodeValue(doc, "barcode"));
+    //     return resp;
+    // }
+
     public YurticiCreateResponse parseCreateResponse(String xml) {
         log.debug("Yurtici createShipment yaniti:\n{}", xml);
         Document doc = parseXml(xml);
         YurticiCreateResponse resp = new YurticiCreateResponse();
-        resp.setResultCode(getNodeValue(doc, "resultCode"));
-        resp.setResultMessage(getNodeValue(doc, "resultMessage"));
-        resp.setBarcode(getNodeValue(doc, "barcode"));
+        resp.setResultCode(getNodeValue(doc, "outFlag"));
+        resp.setResultMessage(getNodeValue(doc, "outResult"));
+        resp.setBarcode(getNodeValue(doc, "cargoKey"));
         return resp;
-    }
+    }   
 
     public YurticiQueryResponse parseQueryResponse(String xml) {
         log.debug("Yurtici queryShipment yaniti:\n{}", xml);

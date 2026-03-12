@@ -22,6 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.UUID;
 
 /**
  * Yurtici Kargo saglayicisi.
@@ -59,6 +60,10 @@ public class YurticiCargoProvider implements CargoProvider {
         model.put("desi", request.getDesi());
         model.put("cargoCount", 1);
         model.put("referenceNo", request.getReferenceNo() != null ? request.getReferenceNo() : "");
+        String cargoKey = request.getReferenceNo() != null 
+            ? request.getReferenceNo() 
+            : UUID.randomUUID().toString().replace("-", "").substring(0, 12);
+        model.put("cargoKey", cargoKey);
         model.put("receiver", request.getReceiver());
         model.put("sender", request.getSender());
 

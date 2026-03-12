@@ -1,39 +1,28 @@
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
-                  xmlns:ws="http://ws.integration.yurtici.com/">
+                  xmlns:ship="http://yurticikargo.com.tr/ShippingOrderDispatcherServices">
     <soapenv:Header/>
     <soapenv:Body>
-        <ws:createShipment>
-            <request>
-                <userInfo>
-                    <userName>${username}</userName>
-                    <password>${password}</password>
-                    <userLanguage>${userLanguage}</userLanguage>
-                </userInfo>
-                <shipmentInfo>
-                    <ShippingOrderVO>
-                        <cargoCount>${cargoCount}</cargoCount>
-                        <desi>${desi}</desi>
-                        <receiverCityCode>0</receiverCityCode>
-                        <receiverCityName>${receiver.city}</receiverCityName>
-                        <receiverDistrictName>${receiver.district}</receiverDistrictName>
-                        <receiverAddress>${receiver.address}</receiverAddress>
-                        <receiverName>${receiver.firstName} ${receiver.lastName}</receiverName>
-                        <receiverPhone>${receiver.phone}</receiverPhone>
-                        <senderCityCode>0</senderCityCode>
-                        <senderCityName>${sender.city}</senderCityName>
-                        <senderDistrictName>${sender.district}</senderDistrictName>
-                        <senderAddress>${sender.address}</senderAddress>
-                        <senderName>${sender.firstName} ${sender.lastName}</senderName>
-                        <senderPhone>${sender.phone}</senderPhone>
-                        <referenceNo>${referenceNo}</referenceNo>
-                        <waybillNo></waybillNo>
+        <ship:createShipment>
+            <wsUserName>${username}</wsUserName>
+            <wsPassword>${password}</wsPassword>
+            <userLanguage>${userLanguage}</userLanguage>
+            <ShippingOrderVO>
+                <cargoKey>${cargoKey}</cargoKey>
+                <invoiceKey>${referenceNo}</invoiceKey>
+                <cargoCount>${cargoCount}</cargoCount>
+                <desi>${desi}</desi>
+                <receiverCustName>${receiver.firstName} ${receiver.lastName}</receiverCustName>
+                <receiverAddress>${receiver.address}</receiverAddress>
+                <receiverPhone1>${receiver.phone}</receiverPhone1>
+                <cityName>${receiver.city}</cityName>
+                <townName>${receiver.district}</townName>
 <#if hasCOD>
-                        <ttCollectionPrice>${ttCollectionPrice}</ttCollectionPrice>
-                        <ttCollectionType>${ttCollectionType}</ttCollectionType>
+                <ttCollectionType>${ttCollectionType}</ttCollectionType>
+                <ttInvoiceAmount>${ttCollectionPrice}</ttInvoiceAmount>
+                <ttDocumentId>${cargoKey}</ttDocumentId>
+                <ttDocumentSaveType>0</ttDocumentSaveType>
 </#if>
-                    </ShippingOrderVO>
-                </shipmentInfo>
-            </request>
-        </ws:createShipment>
+            </ShippingOrderVO>
+        </ship:createShipment>
     </soapenv:Body>
 </soapenv:Envelope>
